@@ -2,7 +2,7 @@
 Cellular automata simulator
 Blueworld v0.1
 
-Blueworld is an incomplete cellular automata simulator written in Python. It generates a 10x10 grid of cellular automata that operates according to the rules of Conway's Game of Life.
+Blueworld is an incomplete cellular automata simulator written in Swift. It generates a 10x10 grid of cellular automata that operates according to the rules of Conway's Game of Life.
 
 Future versions will include:  
 -Graphics  
