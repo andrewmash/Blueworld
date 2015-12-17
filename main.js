@@ -30,7 +30,7 @@ var printArray = function(array) {
 				output += "+";
 			}
 		}
-		output += "\n";
+		output += "<br/>";
 	}
 	return output;
 };
@@ -43,15 +43,16 @@ var simulate = function(input) {
 			outputRow.push(isItAlive(input, i, j, input[i][j]));
 		}
 		output.push(outputRow);
+		outputRow = [];
 	}
 	return output;
 }
 
 var isItAlive = function(world, latitude, longitude, cell) {
 	var population = 0;
-	for (var i = (latitude - 1) % worldLength; i <= (latitude + 1) % (worldLength - 1); i++) {
-		for (var j = (longitude - 1) % worldWidth; j <= (longitude + 1) % (worldWidth - 1); j++) {
-			if (world[i][j] === true && !(i === latitude && j == longitude)) {
+	for (var i = -1; i <= 1; i++) {
+		for (var j = -1; j <= 1; j++) {
+			if (world[wrap(latitude + i, worldLength)][wrap(longitude + j, worldWidth)] === true && !(i === 0 && j === 0)) {
 				population++;
 			} 
 		}
@@ -75,10 +76,23 @@ var isItAlive = function(world, latitude, longitude, cell) {
 	}
 };
 
+var wrap = function(num, size) {
+	if (num < 0) {
+		return size - 1;
+	}
+	if (num >= size) {
+		return 0;
+	}
+	return num;
+}
+
+var iterate = function() {
+	
+}
+
 oldGen = seed(oldGen);
-for (var i = 0; i < 100; i++) {
+window.setInterval(function() {
+	$('p').html(printArray(oldGen));
 	newGen = simulate(oldGen);
 	oldGen = newGen;
-	console.log(printArray(oldGen));
-	sleep(3000);
-}
+}, 1000);
