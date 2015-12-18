@@ -1,7 +1,6 @@
-var oldGen = [];
-var newGen = [];
-var worldLength = 8;
-var worldWidth = 8;
+var cells = [];
+var worldLength = 100;
+var worldWidth = 200;
 
 var seed = function(array) {
 	array = [];
@@ -38,8 +37,8 @@ var printArray = function(array) {
 var simulate = function(input) {
 	var output = [];
 	var outputRow = [];
-	for (var i = 0; i < input.length; i++) {
-		for (var j = 0; j < input.length; j++) {
+	for (var i = 0; i < worldLength; i++) {
+		for (var j = 0; j < worldWidth; j++) {
 			outputRow.push(isItAlive(input, i, j, input[i][j]));
 		}
 		output.push(outputRow);
@@ -86,13 +85,8 @@ var wrap = function(num, size) {
 	return num;
 }
 
-var iterate = function() {
-	
-}
-
-oldGen = seed(oldGen);
+cells = seed(cells);
 window.setInterval(function() {
-	$('p').html(printArray(oldGen));
-	newGen = simulate(oldGen);
-	oldGen = newGen;
-}, 1000);
+	$('p').html(printArray(cells));
+	cells = simulate(cells);
+}, 100);
