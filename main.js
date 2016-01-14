@@ -24,9 +24,9 @@ var printArray = function(array) {
 	for(var i = 0; i < array.length; i++) {
 		for (var j = 0; j < array[i].length; j++) {
 			if (array[i][j] === true) {
-				output += "*";
+				output += "0";
 			} else {
-				output += "+";
+				output += " ";
 			}
 		}
 		output += "<br/>";
