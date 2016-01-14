@@ -27,6 +27,7 @@ var printArray = function(array) {
 				output += "0";
 			} else {
 				output += " ";
+
 			}
 		}
 		output += "<br/>";
